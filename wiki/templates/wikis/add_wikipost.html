@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block title %}
+    Add Guide - 
+{% endblock title %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
+
+{% block javascript %}
+  <script src="{% static 'js/simplemde.min.js' %}"></script>
+  <script>
+    var simplemde = new SimpleMDE();
+  </script>
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h4>Aggiungi guida</h4>
+    <br>
+    <div class="form-group">
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-outline-dark">Aggiungi</button>
+        </form>
+    </div>
+{% endif %}
+{% endblock content %}

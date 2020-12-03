@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if category_wikiposts %} 
+        {{ namec.title }} -
+    {% else %}
+        Missing - 
+    {% endif %}
+{% endblock title %}
+
+{% block sidenav %}
+
+{% endblock sidenav %}
+
+{% block content %}
+    {% if category_wikiposts %}
+    <br>
+    <h4>{{ namec.title }}</h4>
+    <br><br>
+        {% for post in category_wikiposts %}
+            <a href="{% url 'wiki-detail' post.slug %}"><p>{{ post.title }}</p></a>
+        {% endfor %}
+    {% else %}
+        <h4>Questa pagina non esiste</h4>
+    {% endif %}
+{% endblock %}

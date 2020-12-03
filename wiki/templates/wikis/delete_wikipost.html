@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Delete Guide - 
+{% endblock title %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.id == object.author.id or user.is_staff %}
+            <h4>Elimina guida</h4>
+            <br>
+            <h5>Eliminare {{ object.title }}? </h5>
+            <br>
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-danger">Elimina</button>
+                    <a href="{% url 'wiki-detail' object.slug %}" class="btn btn-outline-dark">Annulla</a>
+                </form>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock content %}

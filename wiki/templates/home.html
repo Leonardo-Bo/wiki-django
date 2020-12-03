@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home - 
+{% endblock title %}
+
+{% block sidenav %}
+{% endblock sidenav %}
+
+{% block content %}
+    <br><br>
+    <div class="container">
+        <div class="row">
+            {% for cat in wikiposts %}
+                {% if forloop.counter0|divisibleby:3 and not forloop.first %}<div class="w-100"></div>{% endif %}
+                <div class="col">
+                    <p align="center"><a href="{% url 'category_wiki' cat.slug %}"><img src="{{ cat.image.url }}" width=100></a></p>
+                    <p align="center"><b><a href="{% url 'category_wiki' cat.slug %}">{{ cat.name }}</a></b></p>
+                <br><br>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

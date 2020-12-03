@@ -1,0 +1,10 @@
+*.pyc
+*~
+/.vscode
+members/__pycache__/
+wikis/__pycache__/
+wiki/__pycache__/
+vwiki
+db.sqlite3
+/static
+.DS_Store

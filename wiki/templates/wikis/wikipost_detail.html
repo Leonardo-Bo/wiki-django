@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ wiki.title }} - 
+{% endblock title %}
+
+{% block sidenav %}
+    <a href="#"><h4>{{ wiki.title }}</h4></a>
+        {{ toc|safe }}
+{% endblock sidenav %}
+
+{% block content %}
+    <br><br/>
+    <h1>{{ wiki.title }}</h1>
+    {% if user.id == wiki.author.id or user.is_staff %}
+        <div class="float-left">
+            <small>
+                <a href="{% url 'edit_wiki' wiki.slug %}" class="btn btn-outline-warning btn-sm">Modifica</a>
+                <a href="{% url 'delete_wiki' wiki.slug %}" class="btn btn-outline-danger btn-sm">Elimina</a>
+            </small>
+        </div>
+    {% endif %}
+    <br><br>
+    {{ wiki.content | safe }}
+{% endblock content %}

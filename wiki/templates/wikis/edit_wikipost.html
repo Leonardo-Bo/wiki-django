@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block title %}
+    Edit Guide - 
+{% endblock title %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
+
+{% block javascript %}
+  <script src="{% static 'js/simplemde.min.js' %}"></script>
+  <script>
+    var simplemde = new SimpleMDE();
+  </script>
+{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    {% if user.id == object.author.id or user.is_staff %}
+      <h4>Modifica guida</h4>
+      <br>
+      <div class="form-group">
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-outline-success">Modifica</button>
+            <a href="{% url 'wiki-detail' object.slug %}" class="btn btn-outline-dark">Annulla</a>
+        </form>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endblock content %}

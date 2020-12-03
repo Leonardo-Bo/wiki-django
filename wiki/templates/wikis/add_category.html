@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% load static %}
+
+{% block title %}
+    Add Category - 
+{% endblock title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h4>Aggiungi categoria</h4>
+    <br>
+    <div class="form-group no-gutters col-8 p-0">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+        <br><br>
+        <button class="btn btn-outline-dark">Aggiungi</button>
+        </form>
+    </div>
+{% endif %}
+{% endblock content %}

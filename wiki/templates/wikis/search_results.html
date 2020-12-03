@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if category_wikiposts %} 
+        {{ namec.title }} -
+    {% else %}
+        Missing - 
+    {% endif %}
+{% endblock title %}
+
+{% block sidenav %}
+
+{% endblock sidenav %}
+
+{% block content %}
+    {% if object_list %}
+        <br>
+        <h4>Risultati ricerca</h4>
+        <br><br>
+        {% for elem in object_list %}
+            <a href="{% url 'wiki-detail' elem.slug %}"><p>{{ elem.title }}</p></a>
+        {% endfor %}
+    {% else %}
+        <h4>Nessun risultato trovato</h4>
+    {% endif %}
+{% endblock %}
