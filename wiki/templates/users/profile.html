@@ -30,6 +30,10 @@
                   {{ u_form|crispy }}
                   {{ p_form|crispy }}
               </fieldset>
+              <div>
+                  <a href="{% url 'change_password' %}">Cambia Password</a>
+              </div>
+              <br>
               <div class="form-group">
                   <button class="btn btn-outline-info" type="submit">Aggiorna</button>
               </div>
