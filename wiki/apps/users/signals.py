@@ -1,4 +1,4 @@
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save, pre_delete, pre_save
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from .models import Profile
@@ -30,5 +30,13 @@ def active(sender, instance, **kwargs):
     if instance.is_active and User.objects.filter(pk=instance.pk, is_active=False).exists():
         subject = 'Attivazione Account'
         mesagge = '%s il tuo account è stato attivato con successo' %(instance.username)
+        from_email = settings.EMAIL_HOST_USER
+        send_mail(subject, mesagge, from_email, [instance.email], fail_silently=False)
+
+
+@receiver(pre_delete, sender=User, dispatch_uid='delete')
+def delete_account(sender, instance, **kwargs):
+        subject = 'Account eliminato'
+        mesagge = '%s, il tuo account è stato eliminato con successo' %(instance.username)
         from_email = settings.EMAIL_HOST_USER
         send_mail(subject, mesagge, from_email, [instance.email], fail_silently=False)

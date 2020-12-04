@@ -9,9 +9,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
-
     def save(self , *args , **kwargs):
         if not self.image:
             self.image = 'profile_images/default.png'

@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views import generic
-from django.urls import reverse_lazy
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.urls import reverse_lazy, reverse
+from django.contrib.auth import update_session_auth_hash, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, UserDeleteForm
 from django.contrib import messages
-from django.core.mail import mail_admins, send_mail
 
 
 class UserRegisterView(generic.CreateView):
@@ -18,17 +18,6 @@ class UserRegisterView(generic.CreateView):
         user = form.save(commit=False)
         user.is_active = False
         user.save()
-
-        # send_mail('Richiesta iscrizione utente', 
-        # f"È stata effettuata una richiesta di iscrizione dall'utente:\n\n{ user.username }\n{user.email}\n\nPer effettuare operazioni vai a http://127.0.0.1:8000/admin", 
-        # 'cassandraserve2020@gmail.com', ['boleo88@gmail.com'], 
-        # fail_silently=False, )
-
-        # mail_admins('Richiesta iscrizione utente', 
-        # f"È stata effettuata una richiesta di iscrizione dall'utente:\n\n{ user.username }\n{user.email}\n\nPer effettuare operazioni vai a http://127.0.0.1:8000/admin",
-        # fail_silently=False, )
-        
-
         return redirect("request")
 
 
@@ -61,6 +50,7 @@ def profile(request):
     return render(request, 'users/profile.html', context)
 
 
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -74,3 +64,25 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'users/change_password.html', {'form': form})
+
+
+@login_required
+def delete_user_view(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = UserDeleteForm(request.POST)
+
+            if form.is_valid():
+                if request.POST["delete_checkbox"]:
+                    rem = User.objects.get(username=request.user)
+                    if rem is not None:
+                        rem.delete()
+                        logout(request)
+                        messages.info(request, "Il tuo account è stato eliminato.")
+                        return redirect(reverse('home'))
+                    else:
+                        messages.info(request, "Qualcosa è andato storto.")
+        else:
+            form = UserDeleteForm()
+        context = {'form': form}
+        return render(request, 'users/delete_user.html', context)
