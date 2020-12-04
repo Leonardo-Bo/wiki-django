@@ -19,7 +19,7 @@ def save_user_profile(sender, instance, **kwargs):
 
 @receiver(post_save, sender=User, dispatch_uid='register')
 def register(sender, instance, **kwargs):
-    if kwargs.get('created', False):
+    if kwargs.get('created', False) and not instance.is_active:
         mail_admins('Richiesta iscrizione utente', 
         f"È stata effettuata una richiesta di iscrizione dall'utente:\n\n{ instance.username }\n{ instance.email }\n\nPer effettuare operazioni vai a http://127.0.0.1:8000/admin",
         fail_silently=False, )

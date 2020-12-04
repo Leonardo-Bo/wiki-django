@@ -79,7 +79,7 @@ def delete_user_view(request):
                         rem.delete()
                         logout(request)
                         messages.info(request, "Il tuo account è stato eliminato.")
-                        return redirect(reverse('home'))
+                        return redirect(reverse('register'))
                     else:
                         messages.info(request, "Qualcosa è andato storto.")
         else:
