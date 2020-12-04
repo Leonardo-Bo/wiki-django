@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
+from django.core.mail import mail_admins, send_mail
 
 
 class UserRegisterView(generic.CreateView):
@@ -17,6 +18,17 @@ class UserRegisterView(generic.CreateView):
         user = form.save(commit=False)
         user.is_active = False
         user.save()
+
+        # send_mail('Richiesta iscrizione utente', 
+        # f"È stata effettuata una richiesta di iscrizione dall'utente:\n\n{ user.username }\n{user.email}\n\nPer effettuare operazioni vai a http://127.0.0.1:8000/admin", 
+        # 'cassandraserve2020@gmail.com', ['boleo88@gmail.com'], 
+        # fail_silently=False, )
+
+        mail_admins('Richiesta iscrizione utente', 
+        f"È stata effettuata una richiesta di iscrizione dall'utente:\n\n{ user.username }\n{user.email}\n\nPer effettuare operazioni vai a http://127.0.0.1:8000/admin",
+        fail_silently=False, )
+        
+
         return redirect("request")
 
 
