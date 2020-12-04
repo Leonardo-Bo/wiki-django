@@ -11,7 +11,7 @@ from django.contrib import messages
 
 class UserRegisterView(generic.CreateView):
     form_class = UserRegisterForm
-    template_name = 'registration/register.html'
+    template_name = 'users/register.html'
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
@@ -22,7 +22,7 @@ class UserRegisterView(generic.CreateView):
 
 
 def RequestPage(request):
-    return render(request, 'registration/request.html')
+    return render(request, 'users/request.html')
 
 
 @login_required

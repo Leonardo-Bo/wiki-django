@@ -29,9 +29,6 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = ['image']
 
 
-# class UserDeleteForm(forms.Form):
-#     delete = forms.BooleanField(required=True)
-
 class UserDeleteForm(forms.Form):
     delete_checkbox = forms.BooleanField(label=mark_safe('Sei sicuro di voler procedere?'), required=True)
     def __init__(self, *args, **kwargs):
