@@ -154,4 +154,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
-ADMINS = (("Leonardo", os.environ.get('EMAIL_ADMIN')), )
+ADMINS = ((os.environ.get('USER_ADMIN'), os.environ.get('EMAIL_ADMIN')), )

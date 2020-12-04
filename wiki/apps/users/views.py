@@ -24,9 +24,9 @@ class UserRegisterView(generic.CreateView):
         # 'cassandraserve2020@gmail.com', ['boleo88@gmail.com'], 
         # fail_silently=False, )
 
-        mail_admins('Richiesta iscrizione utente', 
-        f"È stata effettuata una richiesta di iscrizione dall'utente:\n\n{ user.username }\n{user.email}\n\nPer effettuare operazioni vai a http://127.0.0.1:8000/admin",
-        fail_silently=False, )
+        # mail_admins('Richiesta iscrizione utente', 
+        # f"È stata effettuata una richiesta di iscrizione dall'utente:\n\n{ user.username }\n{user.email}\n\nPer effettuare operazioni vai a http://127.0.0.1:8000/admin",
+        # fail_silently=False, )
         
 
         return redirect("request")
