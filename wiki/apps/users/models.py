@@ -20,7 +20,6 @@ class Profile(models.Model):
         else:
             super().save(*args, **kwargs)
 
-
     class Meta:
         verbose_name = "profilo"
         verbose_name_plural = "profili"
