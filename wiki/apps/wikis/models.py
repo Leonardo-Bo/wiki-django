@@ -5,9 +5,13 @@ from django.urls import reverse
 from django_extensions.db.fields import AutoSlugField
 
 
+def category_upload_to(instance, filename):
+    return "category_images/{}/{}".format(instance.name, filename)
+
+
 class WikiCategory(models.Model):
     name = models.CharField(max_length=200, unique=True, verbose_name="nome")
-    image = models.ImageField(null=True, blank=True, upload_to="category_images/", default="category_images/default.png", verbose_name="immagine")
+    image = models.ImageField(null=True, blank=True, upload_to=category_upload_to, default="category_images/default.png", verbose_name="immagine")
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="autore")
     date = models.DateTimeField(auto_now=True, verbose_name="data")
     slug = AutoSlugField(populate_from=['name'], unique=True)
