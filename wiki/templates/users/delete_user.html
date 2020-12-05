@@ -18,7 +18,7 @@
                 {% csrf_token %}
                 {{ form.as_p }}
             <button class="btn btn-outline-danger" id="delete-button" type="submit">Elimina</button>
-            <a href="{% url 'profile' %}" class="btn btn-outline-dark">Annulla</a>
+            <a href="{% url 'profile' user.profile.slug %}" class="btn btn-outline-dark">Annulla</a>
             </form>
     {% endif %}
 {% endblock content %}

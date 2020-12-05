@@ -13,7 +13,9 @@ class WikiCategory(models.Model):
     name = models.CharField(max_length=200, unique=True, verbose_name="nome")
     image = models.ImageField(null=True, blank=True, upload_to=category_upload_to, default="category_images/default.png", verbose_name="immagine")
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="autore")
-    date = models.DateTimeField(auto_now=True, verbose_name="data")
+    #date = models.DateTimeField(auto_now=True, verbose_name="data")
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name="data creazione")
+    updated_date = models.DateTimeField(auto_now=True, verbose_name="data ultima modifica")
     slug = AutoSlugField(populate_from=['name'], unique=True)
 
     class Meta:
@@ -34,7 +36,9 @@ class WikiCategory(models.Model):
 class WikiPost(models.Model):
     title = models.CharField(max_length=200, verbose_name="titolo")
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="autore")
-    date = models.DateTimeField(auto_now=True, verbose_name="data")
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name="data creazione")
+    updated_date = models.DateTimeField(auto_now=True, verbose_name="data ultima modifica")
+    #date = models.DateTimeField(auto_now=True, verbose_name="data")
     content = models.TextField(verbose_name="contenuto")
     category = models.ForeignKey(WikiCategory, on_delete=models.PROTECT, to_field="slug", verbose_name="categoria")
     slug = AutoSlugField(populate_from=['title'])

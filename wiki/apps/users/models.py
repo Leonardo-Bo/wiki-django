@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_extensions.db.fields import AutoSlugField
 
 
 def profile_upload_to(instance, filename):
@@ -9,6 +10,7 @@ def profile_upload_to(instance, filename):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True, upload_to=profile_upload_to, default="profile_images/default.png")
+    slug = AutoSlugField(populate_from=['user'], unique=True)
 
     def __str__(self):
         return self.user.username

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth import update_session_auth_hash, logout
@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, UserDeleteForm
+from .models import Profile
 from django.contrib import messages
 
 
@@ -26,7 +27,7 @@ def RequestPage(request):
 
 
 @login_required
-def profile(request):
+def profile(request, slug):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -36,15 +37,18 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Il profilo è stato aggiornato')
-            return redirect('profile')
+            return redirect('profile', slug=slug)
 
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
+    slug = get_object_or_404(Profile, slug=slug)
+
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form, 
+        'slug': slug, 
     }
 
     return render(request, 'users/profile.html', context)
