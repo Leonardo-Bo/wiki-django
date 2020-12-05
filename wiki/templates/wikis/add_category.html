@@ -12,6 +12,15 @@
 {% if user.is_authenticated %}
     <h4>Aggiungi categoria</h4>
     <br>
+    <small>
+        <div class="alert alert-warning">
+            Sebbene non obbligatorio, si raccomanda di aggiungere un'icona
+        </div>
+        <div class="alert alert-warning">
+            Attenzione! Una volta creata, una categoria può essere modificata solo da un admin
+        </div>
+    </small>
+    <br>
     <div class="form-group no-gutters col-8 p-0">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}

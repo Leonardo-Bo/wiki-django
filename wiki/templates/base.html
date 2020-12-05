@@ -117,18 +117,12 @@
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
+    <!-- holds messages for 3 seconds -->
     <script>
         var message_ele = document.getElementById("message_container");
         setTimeout(function(){ 
             message_ele.style.display = "none";
             }, 3000);
-    </script>
-
-    <!-- per lasciare margine su TOC. Da rivedere -->
-    <script>
-        var shiftWindow = function() { scrollBy(0, -80) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
     </script>
 
     {% block javascript %}{% endblock %}
