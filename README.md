@@ -88,6 +88,12 @@ Il pannello di amministrazione si trova a ```http://127.0.0.1:8000/admin```
 
 4. Le guide vengono scritte in markdown. Sulla sidebar appare un'indice della guida formato dai tag \#.
 
-## Riferimenti
+## Prossimi obiettivi 
+
+1. Una gestione accurata delle immagini. Deve essere possibile inserire e richiamare più immagini in una guida mentre questa viene scritta. Deve essere possibile selezionare le immagini già archiviate nel sistema (esempio: un'immagine del profilo che viene cambiata resta nel sistema, ma allo stato attuale non può essere reimpostata se non rifacendo l'upload).
+
+2. Aggiungere collaboratori. Allo stato attuale una guida può essere modificata solo da chi l'ha creata e dai membri dello staff; l'obiettivo è che l'autore di una guida possa aggiungere dei collaboratori in grado di modificarla.
+
+## Riferimenti 
 
 Questo progetto è stato sviluppato a partire da guide e tutorial reperiti dal web. In particolare sono stati fondamentali i tutorial di Corey Schafer e di Codemy su youtube.com.
