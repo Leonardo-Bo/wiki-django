@@ -77,7 +77,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{% url 'profile' user.profile.slug %}"><i class="fas fa-user mr-sm-3"></i>Profilo</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-users mr-sm-3"></i>Utenti</a>
+                                <a class="dropdown-item" href="{% url 'user_list' %}"><i class="fas fa-users mr-sm-3"></i>Utenti</a>
                             <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt mr-sm-3"></i>Esci</a>
                             </div>

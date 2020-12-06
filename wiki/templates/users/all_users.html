@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Users - 
+{% endblock title %}
+
+{% block content %}
+    <br><br>
+    <div class="container">
+        <div class="row">
+            {% for user in all_users %}
+                {% if forloop.counter0|divisibleby:4 and not forloop.first %}<div class="w-100"></div>{% endif %}
+                <div class="col">
+                    <p align="center"><a href="{% url 'profile' slug=user.username|slugify %}"><img class="rounded-circle" src="{{ user.profile.image.url }}" width=100></a></p>
+                    <p align="center"><b><a href="{% url 'profile' slug=user.username|slugify %}">{{ user.username }}</a></b></p>
+                <br><br>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

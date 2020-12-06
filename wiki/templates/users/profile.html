@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+
+{% block title %}
+    {{ user_profile.username }} Profile - 
+{% endblock title %}
+
 {% block content %}
     <div class="main_users">
     <div class="content-section">

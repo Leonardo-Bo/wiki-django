@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.urls import reverse_lazy, reverse
-from django.contrib.auth import update_session_auth_hash, logout
+from django.contrib.auth import update_session_auth_hash, logout, get_user_model
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
@@ -106,3 +106,12 @@ def delete_user_view(request):
             form = UserDeleteForm()
         context = {'form': form, 'cat_menu': cat_menu}
         return render(request, 'users/delete_user.html', context)
+
+
+@login_required
+def all_users(request):
+    
+    all_users= get_user_model().objects.all().order_by('username')
+    context= {'all_users': all_users}
+        
+    return render(request, 'users/all_users.html', context)
