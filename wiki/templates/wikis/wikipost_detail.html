@@ -12,6 +12,11 @@
 {% block content %}
     <br><br/>
     <h1>{{ wiki.title }}</h1>
+    <a href="{% url 'profile' slug=wiki.author|slugify %}">
+    <small>{{ wiki.author }}</small>
+    </a>
+    <h1>{{ wiki.author.slug }}</h1>
+    <br>
     {% if user.id == wiki.author.id or user.is_staff %}
         <div class="float-left">
             <small>

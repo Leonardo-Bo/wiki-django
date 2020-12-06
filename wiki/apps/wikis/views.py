@@ -30,16 +30,16 @@ def CategoryView(request, cats):
     return render(request, 'wikis/category.html', {'cats':cats, 'category_wikiposts': category_wikiposts, 'namec':cats.replace("-", " ").replace("h l", "h - l"), 'cat_menu': cat_menu})
 
 
-class WikiPostDetailView(LoginRequiredMixin, DetailView):
-    model = WikiPost
-    template_name = "wikipost_detail_class.html"
-    login_url = "/users/login/"
+# class WikiPostDetailView(LoginRequiredMixin, DetailView):
+#     model = WikiPost
+#     template_name = "wikipost_detail_class.html"
+#     login_url = "/users/login/"
 
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = WikiCategory.objects.all()
-        context = super(WikiPostDetailView, self).get_context_data(*args, **kwargs)
-        context["cat_menu"] = cat_menu
-        return context
+#     def get_context_data(self, *args, **kwargs):
+#         cat_menu = WikiCategory.objects.all()
+#         context = super(WikiPostDetailView, self).get_context_data(*args, **kwargs)
+#         context["cat_menu"] = cat_menu
+#         return context
 
 
 @login_required

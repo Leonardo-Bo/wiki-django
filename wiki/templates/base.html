@@ -60,7 +60,7 @@
                     <div class="input-group md-form form-sm form-2 pl-0">
                         <input class="form-control form-control-sm bg-dark text-white border border-secondary" name="q" type="text" placeholder="Cerca..." aria-label="Search">
                         <div class="input-group-append">
-                            <span class="input-group-text amber lighten-3 bg-dark text-grey border border-secondary mr-sm-4" id="basic-text1">
+                            <span class="input-group-text amber lighten-3 bg-dark text-grey border border-secondary mr-sm-3" id="basic-text1">
                                 <i class="fas fa-search text-grey"
                             aria-hidden="true"></i>
                             </span>
@@ -70,11 +70,14 @@
                 <form class="form-inline">
                     <div class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ user.username }}
-                            </a>    
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="input-group-text amber lighten-3 bg-dark border border-secondary text-grey">
+                                    <i class="fas fa-bars" aria-hidden="true"></i>
+                                </span>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{% url 'profile' user.profile.slug %}"><i class="fas fa-user mr-sm-3"></i>Profilo</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-users mr-sm-3"></i>Utenti</a>
                             <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt mr-sm-3"></i>Esci</a>
                             </div>

@@ -7,6 +7,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, UserDeleteForm
 from .models import Profile
+from apps.wikis.models import WikiCategory, WikiPost
 from django.contrib import messages
 
 
@@ -28,6 +29,12 @@ def RequestPage(request):
 
 @login_required
 def profile(request, slug):
+    single_profile = Profile.objects.filter(slug=slug).first()
+    user_profile = single_profile.user
+    user_posts = WikiPost.objects.filter(author=user_profile)
+
+    cat_menu = WikiCategory.objects.all()
+
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -44,11 +51,14 @@ def profile(request, slug):
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
     slug = get_object_or_404(Profile, slug=slug)
-
+    
     context = {
+        'user_profile': user_profile, 
+        'user_posts': user_posts, 
         'u_form': u_form,
         'p_form': p_form, 
         'slug': slug, 
+        'cat_menu': cat_menu
     }
 
     return render(request, 'users/profile.html', context)
@@ -56,6 +66,9 @@ def profile(request, slug):
 
 @login_required
 def change_password(request):
+
+    cat_menu = WikiCategory.objects.all()
+
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -67,11 +80,14 @@ def change_password(request):
             messages.error(request, 'Attenzione! Errore durante il processo')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'users/change_password.html', {'form': form})
+    return render(request, 'users/change_password.html', {'form': form, 'cat_menu': cat_menu})
 
 
 @login_required
 def delete_user_view(request):
+
+    cat_menu = WikiCategory.objects.all()
+
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = UserDeleteForm(request.POST)
@@ -88,5 +104,5 @@ def delete_user_view(request):
                         messages.info(request, "Qualcosa è andato storto.")
         else:
             form = UserDeleteForm()
-        context = {'form': form}
+        context = {'form': form, 'cat_menu': cat_menu}
         return render(request, 'users/delete_user.html', context)
