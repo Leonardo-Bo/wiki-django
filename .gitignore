@@ -1,7 +1,7 @@
 *.pyc
 *~
 /.vscode
-members/__pycache__/
+users/__pycache__/
 wikis/__pycache__/
 wiki/__pycache__/
 vwiki
