@@ -30,18 +30,6 @@ def CategoryView(request, cats):
     return render(request, 'wikis/category.html', {'cats':cats, 'category_wikiposts': category_wikiposts, 'namec':cats.replace("-", " ").replace("h l", "h - l"), 'cat_menu': cat_menu})
 
 
-# class WikiPostDetailView(LoginRequiredMixin, DetailView):
-#     model = WikiPost
-#     template_name = "wikipost_detail_class.html"
-#     login_url = "/users/login/"
-
-#     def get_context_data(self, *args, **kwargs):
-#         cat_menu = WikiCategory.objects.all()
-#         context = super(WikiPostDetailView, self).get_context_data(*args, **kwargs)
-#         context["cat_menu"] = cat_menu
-#         return context
-
-
 @login_required
 def wiki_detail(request, slug):
     wiki = get_object_or_404(WikiPost, slug=slug)
@@ -57,8 +45,6 @@ class AddWikiView(LoginRequiredMixin, CreateView):
     form_class = WikiPostForm
     template_name = 'wikis/add_wikipost.html'
     login_url = "/users/login/"
-#    fields = '__all__'
-#    fields = ('title', 'content')
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = WikiCategory.objects.all()
@@ -70,7 +56,6 @@ class AddWikiView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         messages.success(self.request, "Guida aggiunta correttamente")
         return super().form_valid(form)
-
 
 
 class EditWikiView(LoginRequiredMixin, UpdateView):
@@ -89,7 +74,6 @@ class EditWikiView(LoginRequiredMixin, UpdateView):
         form.instance.author = self.request.user
         messages.success(self.request, "Guida modificata correttamente")
         return super().form_valid(form)
-    
 
 
 class DeleteWikiView(LoginRequiredMixin, DeleteView):
@@ -115,7 +99,6 @@ class AddCategory(LoginRequiredMixin, CreateView):
     form_class = AddCategoryForm
     template_name = 'wikis/add_category.html'
     login_url = "/users/login/"
-#    fields = '__all__'
     success_url = reverse_lazy('home')
 
     def get_context_data(self, *args, **kwargs):
