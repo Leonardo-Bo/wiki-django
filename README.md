@@ -13,13 +13,13 @@ Il progetto Ã¨ stato realizzato su ```Linux Mint 19.3```; per il funzionamento Ã
 
 ### Installazione 
 
-1. Clonare il repository dentro la cartella di lavoro
+1. Clona il repository dentro la cartella di lavoro
 
 ```
 git clone https://github.com/Leonardo-Bo/wiki-django.git
 ```
 
-2. Creare un ambiente virtuale ```Python >= 3.6.9``` dentro la cartella di lavoro
+2. Crea un ambiente virtuale ```Python >= 3.6.9``` dentro la cartella di lavoro
 
 ```
 python3.8 -m venv <nome_env>
