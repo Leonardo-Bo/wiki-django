@@ -3,10 +3,11 @@ from .models import WikiPost, WikiCategory
 
 
 class WikiAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "author", "created_date", "updated_date", "category"]
+    list_display = ["__str__", "author", "category", "created_date", "updated_date"]
     list_filter = ["category", "author", "created_date", "updated_date"]
     search_fields = ["title", "content", "category", "created_date", "updated_date"]
     readonly_fields = ('slug',)
+
 
     class Meta: 
         model = WikiPost

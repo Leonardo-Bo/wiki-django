@@ -10,23 +10,35 @@
 {% endblock sidenav %}
 
 {% block content %}
-    <br><br/>
-    <h1>{{ wiki.title }}</h1>
-    <small>Autore: 
-    <a href="{% url 'profile' slug=wiki.author|slugify %}">
-    {{ wiki.author }}</small>
-    </a>
-    <h1>{{ wiki.author.slug }}</h1>
-    <br>
-    {% if user.id == wiki.author.id or user.is_staff %}
+    {% if user.id == wiki.author.id or user.is_staff or user in wiki.collaborators.all %}
         <div class="float-left">
             <small>
-                <a href="{% url 'edit_wiki' wiki.slug %}" class="btn btn-outline-warning btn-sm">Modifica</a>
+                <a href="{% url 'edit_wiki' wiki.slug %}" class="btn btn-outline-warning btn-sm mr-4">Modifica</a>
                 <a href="{% url 'delete_wiki' wiki.slug %}" class="btn btn-outline-danger btn-sm">Elimina</a>
             </small>
         </div>
     {% endif %}
-    <br><br>
+    <br><br/>
+    <h1>{{ wiki.title }}</h1>
+    <small>Autore: 
+        <a href="{% url 'profile' slug=wiki.author|slugify %}">
+            {{ wiki.author }}
+        </a>
+    </small>
+    <br>
+    {% if wiki.collaborators.all %}
+        <small>
+            Collaboratori:
+            {% for collaborator in wiki.collaborators.all|dictsort:"username.lower" %}
+                <a href="{% url 'profile' slug=collaborator|slugify %}">
+                    {{ collaborator }}
+                </a>
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </small>
+    {% endif %}
+    <div class="border-top pt-3"></div>
+    <br>
     {{ wiki.content | safe }}
 {% endblock content %}
 

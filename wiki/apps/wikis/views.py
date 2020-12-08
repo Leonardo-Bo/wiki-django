@@ -46,6 +46,7 @@ class AddWikiView(LoginRequiredMixin, CreateView):
     template_name = 'wikis/add_wikipost.html'
     login_url = "/users/login/"
 
+
     def get_context_data(self, *args, **kwargs):
         cat_menu = WikiCategory.objects.all()
         context = super(AddWikiView, self).get_context_data(*args, **kwargs)
@@ -56,6 +57,11 @@ class AddWikiView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         messages.success(self.request, "Guida aggiunta correttamente")
         return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super(AddWikiView, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 
 
 class EditWikiView(LoginRequiredMixin, UpdateView):
@@ -74,6 +80,11 @@ class EditWikiView(LoginRequiredMixin, UpdateView):
         form.instance.author = self.request.user
         messages.success(self.request, "Guida modificata correttamente")
         return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super(EditWikiView, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 
 
 class DeleteWikiView(LoginRequiredMixin, DeleteView):
@@ -113,7 +124,7 @@ class AddCategory(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class SearchResultsView(ListView):
+class SearchResultsView(LoginRequiredMixin, ListView):
     model = WikiPost
     template_name = 'wikis/search_results.html'
 
