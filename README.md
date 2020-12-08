@@ -84,15 +84,15 @@ Il pannello di amministrazione si trova a ```http://127.0.0.1:8000/admin```
 
 2. Una volta attivato dall'amministratore (dal pannello di amministrazione), l'utente può creare una categoria (ma non modificarla), creare una guida, modificare una guida da lui creata e modificare il proprio profilo.
 
-3. Un utente con privilegi di staff può modificare ogni guida
+3. L'autore di una guida può aggiungere dei collaboratori in grado di modificare la guida.
 
-4. Le guide vengono scritte in markdown. Sulla sidebar appare un'indice della guida formato dai tag \#.
+4. Un utente con privilegi di staff può modificare ogni guida.
+
+5. Le guide vengono scritte in markdown. Sulla sidebar appare un'indice della guida formato dai tag \#.
 
 ## Prossimi obiettivi 
 
 1. Una gestione accurata delle immagini. Deve essere possibile inserire e richiamare più immagini in una guida mentre questa viene scritta. Deve essere possibile selezionare le immagini già archiviate nel sistema (esempio: un'immagine del profilo che viene cambiata resta nel sistema, ma allo stato attuale non può essere reimpostata se non rifacendo l'upload).
-
-2. Aggiungere collaboratori. Allo stato attuale una guida può essere modificata solo da chi l'ha creata e dai membri dello staff; l'obiettivo è che l'autore di una guida possa aggiungere dei collaboratori in grado di modificarla.
 
 ## Riferimenti 
 
