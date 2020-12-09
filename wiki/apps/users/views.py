@@ -31,7 +31,7 @@ def RequestPage(request):
 def profile(request, slug):
     single_profile = Profile.objects.filter(slug=slug).first()
     user_profile = single_profile.user
-    user_posts = WikiPost.objects.filter(author=user_profile)
+    user_posts = WikiPost.objects.filter(author=user_profile).order_by("title")
 
     cat_menu = WikiCategory.objects.all()
 

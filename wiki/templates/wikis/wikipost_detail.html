@@ -19,7 +19,7 @@
         </div>
     {% endif %}
     <br><br/>
-    <h1>{{ wiki.title }}</h1>
+    <h1 style="text-align: left;">{{ wiki.title }}</h1>
     <small>Autore: 
         <a href="{% url 'profile' slug=wiki.author|slugify %}">
             {{ wiki.author }}
