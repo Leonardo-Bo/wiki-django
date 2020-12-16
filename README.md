@@ -65,7 +65,7 @@ cd wiki
 python manage.py migrate
 ```
 
-7. Crea l'amministratore di sistema. Email e password sono quelle settate al punto 3
+7. Crea l'amministratore di sistema. (Vengono chiesti un username, un'email e una password. Username e email sono gli stessi settati al punto 3, qualora sia stato eseguito) 
 
 ```
 python manage.py createsuperuser
