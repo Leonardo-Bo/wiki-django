@@ -25,7 +25,7 @@ git clone https://github.com/Leonardo-Bo/wiki-django.git
 python3.8 -m venv <nome_env>
 ```
 
-3. Setta variabili di ambiente nel file ```active``` dentro la cartella ```<nome_env>/bin```. Alla fine del file aggiungi
+3. (Opzionale) Setta variabili di ambiente nel file ```active``` dentro la cartella ```<nome_env>/bin```. Alla fine del file aggiungi
 
 ```
 export EMAIL_SYSTEM="<email_sistema>"
@@ -34,9 +34,9 @@ export EMAIL_ADMIN="<email_admin>"
 export USER_ADMIN="<user_admin>"
 ```
 
-Queste variabili vengono richiamate nel file ```settings.py```:
+Queste variabili vengono richiamate nel file ```settings.py``` e restano nascoste qualora il codice venga condiviso (come in questo caso!). In particolare:
 
-* ```EMAIL_SYSTEM``` invia un'email all'amministratore di sistema quando un utente invia una richiesta di iscrizione. Invia un'email all'utente quando l'amministratore attiva il suo account. Invia un'email a un utente quando il suo account viene eliminato
+* ```EMAIL_SYSTEM``` invia un'email all'amministratore di sistema quando un utente effettua una richiesta di iscrizione. Invia un'email all'utente quando l'amministratore attiva il suo account. Invia un'email a un utente quando il suo account viene eliminato
 
 * ```EMAIL_PASS``` è la password di ```EMAIL_SYSTEM```
 
@@ -50,9 +50,10 @@ Queste variabili vengono richiamate nel file ```settings.py```:
 . <nome_env>/bin/activate
 ```
 
-5. Aggiorna pip (opzionale) e installa i pacchetti richiesti
+5. Spostati nella cartella ```wiki-django```, aggiorna pip (opzionale) e installa i pacchetti richiesti
 
 ```
+cd wiki-django
 python -m pip install --upgrade pip
 pip install -r requirement.txt
 ```
