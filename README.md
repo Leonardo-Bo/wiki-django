@@ -76,7 +76,7 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Il pannello di amministrazione si trova a ```http://127.0.0.1:8000/admin```
+Il pannello di amministrazione si trova all'indirizzo ```http://127.0.0.1:8000/admin```
 
 ## Funzionalità 
 
