@@ -20,24 +20,25 @@
 {% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-    <h4>Aggiungi guida</h4>
-    <br>
-    <div class="form-group">
-        <form method="POST" novalidate>
-            {% csrf_token %}
-            {{ form.title|as_crispy_field }}
-            <div class="form-row">
-              <div class="form-group col-md-6 mb-0">
-                {{ form.category|as_crispy_field }}
+    {% if user.is_authenticated %}
+      <h4>Aggiungi guida</h4>
+      <br>
+      <div class="form-group">
+          <form method="POST" novalidate>
+              {% csrf_token %}
+              {{ form.title|as_crispy_field }}
+              <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                      {{ form.category|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                      {{ form.collaborators|as_crispy_field }}
+                  </div>
               </div>
-              <div class="form-group col-md-6 mb-0">
-                {{ form.collaborators|as_crispy_field }}
-              </div>
-            </div>
-            {{ form.content|as_crispy_field }}
-            <button class="btn btn-outline-dark">Aggiungi</button>
-        </form>
-    </div>
-{% endif %}
+                  {{ form.content|as_crispy_field }}
+                  <button class="btn btn-outline-success">Aggiungi</button>
+                  <a href="{% url 'home' %}" class="btn btn-outline-dark float-right">Annulla</a>
+          </form>
+      </div>
+    {% endif %}
 {% endblock content %}

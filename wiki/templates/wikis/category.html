@@ -14,12 +14,12 @@
 
 {% block content %}
     {% if category_wikiposts %}
-    <br>
-    <h4>{{ namec.title }}</h4>
-    <br><br>
-        {% for post in category_wikiposts %}
-            <a href="{% url 'wiki-detail' post.slug %}"><p>{{ post.title }}</p></a>
-        {% endfor %}
+        <br>
+        <h4>{{ namec.title }}</h4>
+        <br><br>
+            {% for post in category_wikiposts %}
+                <a href="{% url 'wiki-detail' post.slug %}"><p>{{ post.title }}</p></a>
+            {% endfor %}
     {% else %}
         <h4>Non ci sono guide relative a questa categoria</h4>
     {% endif %}

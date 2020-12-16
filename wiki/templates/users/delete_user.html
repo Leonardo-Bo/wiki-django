@@ -6,19 +6,19 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-            <h4>Elimina Account</h4>
-            <br>
-            <p>{{ user.username }}, stai per eliminare il tuo account...</p>
-            <br>
-            <div class="alert alert-danger">
-                Attenzione! Un account eliminato non può essere recuperato
-            </div>
-            <br>
-            <form id='delete' action="{% url 'delete_account' %}" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
+        <h4>Elimina Account</h4>
+        <br>
+        <p>{{ user.username }}, stai per eliminare il tuo account...</p>
+        <br>
+        <div class="alert alert-danger">
+            Attenzione! Un account eliminato non può essere recuperato
+        </div>
+        <br>
+        <form id='delete' action="{% url 'delete_account' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
             <button class="btn btn-outline-danger" id="delete-button" type="submit">Elimina</button>
             <a href="{% url 'profile' user.profile.slug %}" class="btn btn-outline-dark">Annulla</a>
-            </form>
+        </form>
     {% endif %}
 {% endblock content %}
