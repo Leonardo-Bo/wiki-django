@@ -34,7 +34,7 @@ def CategoryView(request, cats):
 @login_required
 def wiki_detail(request, slug):
     wiki = get_object_or_404(WikiPost, slug=slug)
-    md = markdown.Markdown(extensions=['markdown.extensions.extra', 'markdown.extensions.codehilite', TocExtension(toc_depth=2)])
+    md = markdown.Markdown(extensions=['markdown.extensions.extra', 'markdown.extensions.codehilite', TocExtension(toc_depth=2), 'markdown.extensions.admonition'])
     cat_menu = WikiCategory.objects.all()
     wiki.content = md.convert(wiki.content)
     context = {'wiki': wiki, 'toc': md.toc, 'cat_menu': cat_menu}

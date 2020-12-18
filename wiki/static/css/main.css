@@ -169,3 +169,12 @@ code {
 ::-webkit-scrollbar-thumb {
   background: #343a40; 
 }
+
+.note {
+  background-color: #ffcccc;
+  border-left: 6px solid #990000;
+  margin: 15px 0px 15px 0px; 
+  padding: 15px 10px 1px 10px;
+  border-radius: 10px;
+  font-size: 15px;
+}
