@@ -5,13 +5,15 @@ html {
 	color:#444;
   font:normal normal normal 100%/1.4 georgia, serif;
   overflow-y: scroll;
+  scrollbar-width: thin !important;
+  scrollbar-color: #343a40 #111 !important;
 }
 
 body {
-    font-family: "Lato", sans-serif;
-    background-color: #f5f5f5;
-    scrollbar-width: thin !important;          /* "auto" or "thin" */
-    scrollbar-color: #111 #111 !important;   /* scroll thumb and track */
+  font-family: "Lato", sans-serif;
+  background-color: #f5f5f5;
+  scrollbar-width: thin !important;
+  scrollbar-color: #95a5a6 #dcdee0 !important;
 }
 
 .main {
@@ -136,7 +138,8 @@ table, th, td, a:hover {
 
 code {
   color: #000000; 
-  font-size: 16px;
+  background: #dcdee0;
+  font-size: 15px;
 }
 
 .sidenav::-webkit-scrollbar {
@@ -145,6 +148,18 @@ code {
 
 ::-webkit-scrollbar {
   width: 5px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track:horizontal {
+  background: #dcdee0
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background-color: #95a5a6;
+}
+::-webkit-scrollbar-thumb:horizontal:hover{
+  background-color: #343a40;
 }
 
 ::-webkit-scrollbar-track {
@@ -153,14 +168,4 @@ code {
  
 ::-webkit-scrollbar-thumb {
   background: #343a40; 
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #343a40 #111;
-}
-
-.scroller {
-  scrollbar-color: #111 #111;
-  scrollbar-width: thin;
 }

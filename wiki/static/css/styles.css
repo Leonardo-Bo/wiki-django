@@ -7,7 +7,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .hll { background-color: #ffffcc}
 .codehilite { background: #dcdee0; border-radius: 5px; }
 .codehilite .c { color: #408080; font-style: italic } /* Comment */
-.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .err { border: 0px solid #FF0000 } /* Error */
 .codehilite .k { color: #008000; font-weight: bold } /* Keyword */
 .codehilite .o { color: #666666 } /* Operator */
 .codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
@@ -18,7 +18,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
 .codehilite .gd { color: #A00000 } /* Generic.Deleted */
 .codehilite .ge { font-style: italic } /* Generic.Emph */
-.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gr { color: #FF0000 } Generic.Error
 .codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .codehilite .gi { color: #00A000 } /* Generic.Inserted */
 .codehilite .go { color: #888888 } /* Generic.Output */
