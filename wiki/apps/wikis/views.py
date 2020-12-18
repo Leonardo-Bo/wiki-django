@@ -6,6 +6,7 @@ from .models import WikiPost, WikiCategory
 from .forms import AddCategoryForm, WikiPostForm, EditWikiPostForm
 from django.contrib.auth.decorators import login_required
 import markdown
+from markdown.extensions.toc import TocExtension
 from django.db.models import Q
 from django.contrib import messages
 
@@ -33,7 +34,7 @@ def CategoryView(request, cats):
 @login_required
 def wiki_detail(request, slug):
     wiki = get_object_or_404(WikiPost, slug=slug)
-    md = markdown.Markdown(extensions=['markdown.extensions.extra', 'markdown.extensions.codehilite', 'markdown.extensions.toc'])
+    md = markdown.Markdown(extensions=['markdown.extensions.extra', 'markdown.extensions.codehilite', TocExtension(toc_depth=2)])
     cat_menu = WikiCategory.objects.all()
     wiki.content = md.convert(wiki.content)
     context = {'wiki': wiki, 'toc': md.toc, 'cat_menu': cat_menu}
