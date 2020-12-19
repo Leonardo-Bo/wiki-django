@@ -19,7 +19,7 @@ Il progetto Ã¨ stato realizzato su ```Linux Mint 19.3```; per il funzionamento Ã
 git clone https://github.com/Leonardo-Bo/wiki-django.git
 ```
 
-2. Crea un ambiente virtuale ```Python >= 3.6.9``` dentro la cartella di lavoro
+2. Crea un ambiente virtuale ```Python >= 3.6.9``` dentro la cartella di lavoro (ad esempio ```Python 3.8```)
 
 ```
 python3.8 -m venv <nome_env>
