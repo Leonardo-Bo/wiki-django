@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-        Search results 
+    Search results - 
 {% endblock title %}
 
 {% block sidenav %}
@@ -11,12 +11,12 @@
 {% block content %}
     <br>
     <div id='header_block'>
-        <h3><i class="fa fa-search mr-4" aria-hidden="true"></i>Risultati della ricerca</h3>
+        <h4><i class="fa fa-search mr-4" aria-hidden="true"></i>Risultati della ricerca</h4>
     </div>
     <div class="border-top pt-3"></div>
     <br><br>
     {% if object_list %}
-        <table class="table table-striped table-bordered table-sm" style="font-size: 15px; text-align: left;" id="table-category">
+        <table class="table table-striped table-bordered table-sm" style="font-size: 15px; text-align: left;" id="table-search">
             <thead class="thead-dark">
             <tr>
                 <th class="th-sm" onclick="sortTable(0)" scope="col" style="width: 50.00%">Titolo<i class="fa fa-fw fa-sort float-right" style="padding-top: 4px;"></i></th>
@@ -44,7 +44,7 @@
   <script>
     function sortTable(n) {
       var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-      table = document.getElementById("table-category");
+      table = document.getElementById("table-search");
       switching = true;
       dir = "asc";
       while (switching) {

@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-
 {% load static %}
 
 {% block title %}
@@ -11,13 +10,14 @@
 {% block content %}
     {% if user.is_authenticated %}
         <h4>Aggiungi categoria</h4>
+        <div class="border-top pt-3"></div>
         <br>
         <small>
             <div class="alert alert-warning">
                 Sebbene non obbligatorio, si raccomanda di aggiungere un'icona
             </div>
             <div class="alert alert-warning">
-                Attenzione! Una volta creata, una categoria può essere modificata solo da un admin
+                Attenzione! Una volta creata, una categoria può essere modificata solo dal pannello di amministrazione
             </div>
         </small>
         <br>

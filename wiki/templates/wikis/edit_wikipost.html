@@ -23,6 +23,7 @@
   {% if user.is_authenticated %}
     {% if user.id == object.author.id or user.is_staff %}
       <h4>Modifica guida</h4>
+      <div class="border-top pt-3"></div>
       <br>
       <div class="form-group">
         <form method="POST" novalidate>
