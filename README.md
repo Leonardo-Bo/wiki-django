@@ -19,7 +19,7 @@ Il progetto è stato realizzato su ```Linux Mint 19.3```; per il funzionamento �
 git clone https://github.com/Leonardo-Bo/wiki-django.git
 ```
 
-2. Crea un ambiente virtuale ```Python >= 3.6.9``` dentro la cartella di lavoro
+2. Crea un ambiente virtuale ```Python >= 3.6.9``` dentro la cartella di lavoro (ad esempio ```Python 3.8```)
 
 ```
 python3.8 -m venv <nome_env>
@@ -89,7 +89,7 @@ Il pannello di amministrazione si trova all'indirizzo ```http://127.0.0.1:8000/a
 
 4. Un utente con privilegi di staff può modificare ogni guida.
 
-5. Le guide vengono scritte in markdown. Sulla sidebar appare un'indice della guida formato dai tag \#.
+5. Le guide vengono scritte in markdown. Sulla sidebar appare un'indice della guida formato dal titolo e dai tag \#\#.
 
 ## Prossimi obiettivi 
 
