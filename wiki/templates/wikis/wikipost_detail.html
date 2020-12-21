@@ -19,15 +19,26 @@
         </div>
     {% endif %}
     <br><br/>
+
     <h1 style="text-align: left;">{{ wiki.title }}</h1>
-    <small>Autore: 
-        <a href="{% url 'profile' slug=wiki.author|slugify %}">
-            {{ wiki.author }}
-        </a>
-    </small>
-    <br>
-    {% if wiki.collaborators.all %}
+    <div class="float-left">
         <small>
+        Categoria: 
+        <a href="{% url 'category_wiki' slug=wiki.category|slugify %}">
+            {{ wiki.category }}
+        </a>
+        </small>
+    </div>
+    <br>
+    <div>
+        <small>
+            Autore: 
+            <a href="{% url 'profile' slug=wiki.author|slugify %}">
+                {{ wiki.author }}
+            </a>
+        </small>
+        {% if wiki.collaborators.all %}
+        <small class="float-right">
             Collaboratori:
             {% for collaborator in wiki.collaborators.all|dictsort:"username.lower" %}
                 <a href="{% url 'profile' slug=collaborator|slugify %}">
@@ -36,7 +47,10 @@
                 {% if not forloop.last %}, {% endif %}
             {% endfor %}
         </small>
-    {% endif %}
+        {% endif %}
+        <br>
+    </div>
+
     <div class="border-top pt-3"></div>
     <br>
     {{ wiki.content | safe }}

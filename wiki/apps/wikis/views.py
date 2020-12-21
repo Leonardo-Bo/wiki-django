@@ -41,6 +41,25 @@ class WikiPostCategoryView(LoginRequiredMixin, ListView):
         return context
 
 
+class AddCategoryView(LoginRequiredMixin, CreateView):
+    model = WikiCategory
+    form_class = AddCategoryForm
+    template_name = 'wikis/add_category.html'
+    login_url = "/users/login/"
+    success_url = reverse_lazy('home')
+
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = WikiCategory.objects.all()
+        context = super(AddCategoryView, self).get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        messages.success(self.request, "Categoria aggiunta correttamente")
+        return super().form_valid(form)
+
+
 @login_required
 def wiki_detail(request, slug):
     wiki = get_object_or_404(WikiPost, slug=slug)
@@ -56,7 +75,6 @@ class AddWikiView(LoginRequiredMixin, CreateView):
     form_class = WikiPostForm
     template_name = 'wikis/add_wikipost.html'
     login_url = "/users/login/"
-
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = WikiCategory.objects.all()
@@ -114,25 +132,6 @@ class DeleteWikiView(LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(DeleteWikiView, self).delete(request, *args, **kwargs)
-
-
-class AddCategory(LoginRequiredMixin, CreateView):
-    model = WikiCategory
-    form_class = AddCategoryForm
-    template_name = 'wikis/add_category.html'
-    login_url = "/users/login/"
-    success_url = reverse_lazy('home')
-
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = WikiCategory.objects.all()
-        context = super(AddCategory, self).get_context_data(*args, **kwargs)
-        context["cat_menu"] = cat_menu
-        return context
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        messages.success(self.request, "Categoria aggiunta correttamente")
-        return super().form_valid(form)
 
 
 class SearchResultsView(LoginRequiredMixin, ListView):
