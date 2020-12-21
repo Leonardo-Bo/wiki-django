@@ -13,7 +13,7 @@ from django.contrib import messages
 
 class HomeView(LoginRequiredMixin, ListView):
     model = WikiCategory
-    context_object_name = "wikiposts"
+    context_object_name = "wiki_categories"
     template_name = "home.html"
     login_url = "/users/login/"
 
@@ -24,11 +24,21 @@ class HomeView(LoginRequiredMixin, ListView):
         return context
 
 
-@login_required
-def CategoryView(request, cats):
-    category_wikiposts = WikiPost.objects.all().filter(category=cats).order_by('title')
-    cat_menu = WikiCategory.objects.all()    
-    return render(request, 'wikis/category.html', {'cats':cats, 'category_wikiposts': category_wikiposts, 'namec':cats.replace("-", " ").replace("h l", "h - l"), 'cat_menu': cat_menu})
+class WikiPostCategoryView(LoginRequiredMixin, ListView):
+    model = WikiPost
+    template_name = 'wikis/category.html'
+
+    def get_queryset(self):
+        self.category = get_object_or_404(WikiCategory, slug=self.kwargs['slug'])
+        wikipost_list = WikiPost.objects.filter(category=self.category)
+        return wikipost_list
+
+    def get_context_data(self, **kwargs):
+        cat_menu = WikiCategory.objects.all()
+        context = super(WikiPostCategoryView, self).get_context_data(**kwargs)
+        context['category'] = self.category
+        context["cat_menu"] = cat_menu
+        return context
 
 
 @login_required

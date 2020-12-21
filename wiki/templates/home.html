@@ -11,7 +11,7 @@
     <br><br>
     <div class="container">
         <div class="row">
-            {% for cat in wikiposts %}
+            {% for cat in wiki_categories %}
                 {% if forloop.counter0|divisibleby:3 and not forloop.first %}<div class="w-100"></div>{% endif %}
                 <div class="col">
                     <p align="center"><a href="{% url 'category_wiki' cat.slug %}"><img src="{{ cat.image.url }}" width=100></a></p>

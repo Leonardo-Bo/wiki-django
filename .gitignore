@@ -1,10 +1,12 @@
 *.pyc
 *~
 /.vscode
-users/__pycache__/
-wikis/__pycache__/
+wiki/apps/*/__pycache__/
 wiki/__pycache__/
+wiki/media/category_images/*
+! wiki/media/category_images/default.png
+wiki/media/profile_images/*
+! wiki/media/profile_images/default.png
 vwiki
 db.sqlite3
-/static
 .DS_Store

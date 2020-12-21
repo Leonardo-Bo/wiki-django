@@ -6,16 +6,16 @@ from django_extensions.db.fields import AutoSlugField
 
 
 def category_upload_to(instance, filename):
-    return "category_images/{}/{}".format(instance.name, filename)
+    return "category_images/{}/{}".format(instance.slug, filename)
 
 
 class WikiCategory(models.Model):
     name = models.CharField(max_length=200, unique=True, verbose_name="nome")
+    slug = AutoSlugField(populate_from=['name'], unique=True)
     image = models.ImageField(null=True, blank=True, upload_to=category_upload_to, default="category_images/default.png", verbose_name="immagine")
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="autore")
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="data creazione")
     updated_date = models.DateTimeField(auto_now=True, verbose_name="data ultima modifica")
-    slug = AutoSlugField(populate_from=['name'], unique=True)
 
     class Meta:
         verbose_name = "categoria"

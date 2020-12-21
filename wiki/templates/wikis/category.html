@@ -1,26 +1,78 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block title %}
-    {% if category_wikiposts %} 
-        {{ namec.title }} -
-    {% else %}
-        Missing - 
-    {% endif %}
+    {{ category.name }} -
 {% endblock title %}
 
-{% block sidenav %}
-
-{% endblock sidenav %}
-
 {% block content %}
-    {% if category_wikiposts %}
-        <br>
-        <h4>{{ namec.title }}</h4>
-        <br><br>
-            {% for post in category_wikiposts %}
-                <a href="{% url 'wiki-detail' post.slug %}"><p>{{ post.title }}</p></a>
-            {% endfor %}
-    {% else %}
-        <h4>Non ci sono guide relative a questa categoria</h4>
-    {% endif %}
+  <div id='header_block'>
+    <img class='header_item' src="{{ category.image.url }}" width=50px>
+    <h3 class='header_item ml-4'>{{ category.name }}</h3>
+  </div>
+
+  <div class="border-top pt-3"></div>
+  <br><br>
+
+    {% if wikipost_list %}
+        <table class="table table-striped table-bordered table-sm" style="font-size: 15px; text-align: left;" id="table-category">
+            <thead class="thead-dark">
+            <tr>
+                <th class="th-sm" onclick="sortTable(0)" scope="col" style="width: 65.00%">Titolo<i class="fa fa-fw fa-sort float-right" style="padding-top: 4px;"></i></th>
+                <th class="th-sm" onclick="sortTable(1)" scope="col" style="width: 15.00%">Autore<i class="fa fa-fw fa-sort float-right" style="padding-top: 4px;"></i></th>
+                <th class="th-sm" onclick="sortTable(2)" scope="col" style="width: 20.00%">Ultima Modifica<i class="fa fa-fw fa-sort float-right" style="padding-top: 4px;"></i></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for post in wikipost_list %}
+                <tr>
+                <td><a href="{% url 'wiki-detail' post.slug %}">{{ post.title }}</a></td>
+                <td><a href="{% url 'profile' post.author|slugify %}">{{ post.author }}</a></td>
+                <td>{{ post.updated_date }}</td>
+                {% endfor %}
+            </tbody>
+        </table>
+      {% else %}
+          <h4>Non ci sono guide relative a questa categoria</h4>
+      {% endif %}
 {% endblock %}
+
+{% block javascript %}
+  <script>
+    function sortTable(n) {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.getElementById("table-category");
+      switching = true;
+      dir = "asc";
+      while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("TD")[n];
+          y = rows[i + 1].getElementsByTagName("TD")[n];
+          if (dir == "asc") {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              shouldSwitch = true;
+              break;
+            }
+          } else if (dir == "desc") {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          switchcount ++;
+        } else {
+          if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+          }
+        }
+      }
+    }
+  </script>
+{% endblock javascript %}
