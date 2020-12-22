@@ -28,7 +28,7 @@
             <tbody>
                 {% for post in object_list %}
                 <tr>
-                <td><a href="{% url 'wiki-detail' post.slug %}">{{ post.title }}</a></td>
+                <td><a href="{% url 'detail_wiki' post.slug %}">{{ post.title }}</a></td>
                 <td><a href="{% url 'category_wiki' post.category|slugify %}">{{ post.category }}</a></td>
                 <td><a href="{% url 'profile' post.author|slugify %}">{{ post.author }}</a></td>
                 <td>{{ post.updated_date }}</td>

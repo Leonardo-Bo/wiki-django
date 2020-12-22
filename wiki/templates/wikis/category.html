@@ -25,15 +25,15 @@
             <tbody>
                 {% for post in wikipost_list %}
                 <tr>
-                <td><a href="{% url 'wiki-detail' post.slug %}">{{ post.title }}</a></td>
+                <td><a href="{% url 'detail_wiki' post.slug %}">{{ post.title }}</a></td>
                 <td><a href="{% url 'profile' post.author|slugify %}">{{ post.author }}</a></td>
                 <td>{{ post.updated_date }}</td>
                 {% endfor %}
             </tbody>
         </table>
-      {% else %}
-          <h4>Non ci sono guide relative a questa categoria</h4>
-      {% endif %}
+    {% else %}
+        <h4>Non ci sono guide relative a questa categoria</h4>
+    {% endif %}
 {% endblock %}
 
 {% block javascript %}

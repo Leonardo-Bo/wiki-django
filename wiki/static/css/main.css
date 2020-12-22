@@ -114,6 +114,12 @@ color: #2c3e50 !important;
   font-size: 2.5rem;
 }
 
+.navbar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: 50px !important;
+}
+
 .nav-drop {
   color: #95a5a6 !important;
 }

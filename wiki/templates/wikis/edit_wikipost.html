@@ -21,7 +21,7 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    {% if user.id == object.author.id or user.is_staff %}
+    {% if user.id == object.author.id or user.is_staff or user in wiki.collaborators.all %}
       <h4>Modifica guida</h4>
       <div class="border-top pt-3"></div>
       <br>
@@ -39,7 +39,7 @@
             </div>
             {{ form.content|as_crispy_field }}
             <button class="btn btn-outline-success">Modifica</button>
-            <a href="{% url 'wiki-detail' object.slug %}" class="btn btn-outline-dark float-right">Annulla</a>
+            <a href="{% url 'detail_wiki' object.slug %}" class="btn btn-outline-dark float-right">Annulla</a>
         </form>
       </div>
     {% endif %}

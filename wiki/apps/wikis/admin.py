@@ -8,7 +8,6 @@ class WikiAdmin(admin.ModelAdmin):
     search_fields = ["title", "content", "category", "created_date", "updated_date"]
     readonly_fields = ('slug',)
 
-
     class Meta: 
         model = WikiPost
 

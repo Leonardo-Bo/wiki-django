@@ -20,7 +20,7 @@
                 <form method="POST">
                     {% csrf_token %}
                     <button class="btn btn-outline-danger">Elimina</button>
-                    <a href="{% url 'wiki-detail' object.slug %}" class="btn btn-outline-dark">Annulla</a>
+                    <a href="{% url 'detail_wiki' object.slug %}" class="btn btn-outline-dark">Annulla</a>
                 </form>
             </div>
         {% endif %}

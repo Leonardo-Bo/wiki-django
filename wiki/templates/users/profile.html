@@ -66,7 +66,7 @@
       <tbody>
           {% for post in user_posts %}
           <tr>
-            <td><a href="{% url 'wiki-detail' post.slug %}">{{ post.title }}</a></td>
+            <td><a href="{% url 'detail_wiki' post.slug %}">{{ post.title }}</a></td>
             <td><a href="{% url 'category_wiki' post.category|slugify %}">{{ post.category }}</a></td>
             <td>{{ post.created_date }}</td>
             <td>{{ post.updated_date }}</td>

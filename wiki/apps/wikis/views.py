@@ -60,14 +60,25 @@ class AddCategoryView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-@login_required
-def wiki_detail(request, slug):
-    wiki = get_object_or_404(WikiPost, slug=slug)
-    md = markdown.Markdown(extensions=['markdown.extensions.extra', 'markdown.extensions.codehilite', TocExtension(toc_depth=2), 'markdown.extensions.admonition'])
-    cat_menu = WikiCategory.objects.all()
-    wiki.content = md.convert(wiki.content)
-    context = {'wiki': wiki, 'toc': md.toc, 'cat_menu': cat_menu}
-    return render(request, 'wikis/wikipost_detail.html', context)
+class WikiDetailView(LoginRequiredMixin, DetailView):
+    model = WikiPost
+    form_class = WikiPostForm
+    template_name = 'wikis/wikipost_detail.html'
+
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = WikiCategory.objects.all()
+        wiki = get_object_or_404(WikiPost, slug=self.kwargs['slug'])
+        md = markdown.Markdown(extensions=['markdown.extensions.extra', 
+                                            'markdown.extensions.codehilite', 
+                                            'markdown.extensions.admonition', 
+                                            TocExtension(toc_depth=2) ])
+        wiki.content = md.convert(wiki.content)
+        context = super(WikiDetailView, self).get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        context["wiki"] = wiki
+        context["toc"] = md.toc
+
+        return context
 
 
 class AddWikiView(LoginRequiredMixin, CreateView):
@@ -101,8 +112,10 @@ class EditWikiView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = WikiCategory.objects.all()
+        wiki = get_object_or_404(WikiPost, slug=self.kwargs['slug'])
         context = super(EditWikiView, self).get_context_data(*args, **kwargs)
         context["cat_menu"] = cat_menu
+        context["wiki"] = wiki
         return context
 
     def form_valid(self, form):
@@ -125,8 +138,10 @@ class DeleteWikiView(LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = WikiCategory.objects.all()
+        wiki = get_object_or_404(WikiPost, slug=self.kwargs['slug'])
         context = super(DeleteWikiView, self).get_context_data(*args, **kwargs)
         context["cat_menu"] = cat_menu
+        context["wiki"] = wiki
         return context
 
     def delete(self, request, *args, **kwargs):
