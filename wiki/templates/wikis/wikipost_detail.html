@@ -21,35 +21,47 @@
     <br><br/>
 
     <h1 style="text-align: left;">{{ wiki.title }}</h1>
-    <div class="float-left">
-        <small>
-        Categoria: 
-        <a href="{% url 'category_wiki' slug=wiki.category|slugify %}">
-            {{ wiki.category }}
-        </a>
-        </small>
-    </div>
-    <br>
-    <div>
-        <small>
-            Autore: 
-            <a href="{% url 'profile' slug=wiki.author|slugify %}">
-                {{ wiki.author }}
-            </a>
-        </small>
-        {% if wiki.collaborators.all %}
-        <small class="float-right">
-            Collaboratori:
-            {% for collaborator in wiki.collaborators.all|dictsort:"username.lower" %}
-                <a href="{% url 'profile' slug=collaborator|slugify %}">
-                    {{ collaborator }}
+
+    <div class="row ml-1">
+        <div>
+            <small>
+                Categoria: 
+                <a href="{% url 'category_wiki' slug=wiki.category|slugify %}">
+                    {{ wiki.category }}
                 </a>
-                {% if not forloop.last %}, {% endif %}
-            {% endfor %}
-        </small>
-        {% endif %}
-        <br>
-    </div>
+            </small>
+        </div>
+        <div class="ml-auto mr-3">
+            {% if wiki.collaborators.all %}
+            <small>
+                Collaboratori:
+                {% for collaborator in wiki.collaborators.all|dictsort:"username.lower" %}
+                    <a href="{% url 'profile' slug=collaborator|slugify %}">
+                        {{ collaborator }}
+                    </a>
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </small>
+            {% endif %}
+        </div>
+      </div>
+
+      <div class="row ml-1">
+        <div>
+            <small>
+                Autore: 
+                <a href="{% url 'profile' slug=wiki.author|slugify %}">
+                    {{ wiki.author }}
+                </a>
+            </small>
+        </div>
+        <div class="ml-auto mr-3">
+            <small class="float-right">
+                Ultima modifica: 
+                <a href="{% url 'profile' slug=wiki.author_lastupdate|slugify %}">{{ wiki.author_lastupdate }}</a> | {{ wiki.updated_date|date:" d M Y" }}
+            </small>
+        </div>
+      </div>
 
     <div class="border-top pt-3"></div>
     <br>

@@ -3,7 +3,7 @@ from django.urls.base import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import WikiPost, WikiCategory
-from .forms import AddCategoryForm, WikiPostForm, EditWikiPostForm
+from .forms import AddCategoryForm, AddWikiPostForm, EditWikiPostForm
 from django.contrib.auth.decorators import login_required
 import markdown
 from markdown.extensions.toc import TocExtension
@@ -62,7 +62,6 @@ class AddCategoryView(LoginRequiredMixin, CreateView):
 
 class WikiDetailView(LoginRequiredMixin, DetailView):
     model = WikiPost
-    form_class = WikiPostForm
     template_name = 'wikis/wikipost_detail.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -83,7 +82,7 @@ class WikiDetailView(LoginRequiredMixin, DetailView):
 
 class AddWikiView(LoginRequiredMixin, CreateView):
     model = WikiPost
-    form_class = WikiPostForm
+    form_class = AddWikiPostForm
     template_name = 'wikis/add_wikipost.html'
     login_url = "/users/login/"
 
@@ -95,6 +94,7 @@ class AddWikiView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        form.instance.author_lastupdate = self.request.user
         messages.success(self.request, "Guida aggiunta correttamente")
         return super().form_valid(form)
 
@@ -119,7 +119,7 @@ class EditWikiView(LoginRequiredMixin, UpdateView):
         return context
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.author_lastupdate = self.request.user
         messages.success(self.request, "Guida modificata correttamente")
         return super().form_valid(form)
 

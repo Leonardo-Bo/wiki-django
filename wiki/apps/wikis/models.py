@@ -41,6 +41,7 @@ class WikiPost(models.Model):
     category = models.ForeignKey(WikiCategory, on_delete=models.PROTECT, to_field="slug", verbose_name="categoria", null=True)
     slug = AutoSlugField(populate_from=['title'])
     collaborators = models.ManyToManyField(User, related_name="collaborators", verbose_name="collaboratori", blank=True)
+    author_lastupdate = models.ForeignKey(User, related_name="author_lastupdate", on_delete=models.SET_NULL, null=True, verbose_name="autore ultima modifica")
 
     class Meta:
         verbose_name = "wiki guida"
