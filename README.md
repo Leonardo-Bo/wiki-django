@@ -15,67 +15,67 @@ Il progetto è stato realizzato su ```Linux Mint 19.3```; per il funzionamento �
 
 1. Clona il repository dentro la cartella di lavoro
 
-```
-git clone https://github.com/Leonardo-Bo/wiki-django.git
-```
+    ```
+    git clone https://github.com/Leonardo-Bo/wiki-django.git
+    ```
 
 2. Crea un ambiente virtuale ```Python >= 3.6.9``` dentro la cartella di lavoro (ad esempio ```Python 3.8```)
 
-```
-python3.8 -m venv <nome_env>
-```
+    ```
+    python3.8 -m venv <nome_env>
+    ```
 
 3. (Opzionale) Setta variabili di ambiente nel file ```active``` dentro la cartella ```<nome_env>/bin```. Alla fine del file aggiungi
 
-```
-export EMAIL_SYSTEM="<email_sistema>"
-export EMAIL_PASS="<password_email_sistema>"
-export EMAIL_ADMIN="<email_admin>"
-export USER_ADMIN="<user_admin>"
-```
+    ```
+    export EMAIL_SYSTEM="<email_sistema>"
+    export EMAIL_PASS="<password_email_sistema>"
+    export EMAIL_ADMIN="<email_admin>"
+    export USER_ADMIN="<user_admin>"
+    ```
 
-Queste variabili vengono richiamate nel file ```settings.py``` e restano nascoste qualora il codice venga condiviso (come in questo caso!). In particolare:
+    Queste variabili vengono richiamate nel file ```settings.py``` e restano nascoste qualora il codice venga condiviso (come in questo caso!). In particolare:
 
-* ```EMAIL_SYSTEM``` invia un'email all'amministratore di sistema quando un utente effettua una richiesta di iscrizione. Invia un'email all'utente quando l'amministratore attiva il suo account. Invia un'email a un utente quando il suo account viene eliminato
+    * ```EMAIL_SYSTEM``` invia un'email all'amministratore di sistema quando un utente effettua una richiesta di iscrizione. Invia un'email all'utente quando l'amministratore attiva il suo account. Invia un'email a un utente quando il suo account viene eliminato
 
-* ```EMAIL_PASS``` è la password di ```EMAIL_SYSTEM```
+    * ```EMAIL_PASS``` è la password di ```EMAIL_SYSTEM```
 
-* ```EMAIL_ADMIN``` è l'email dell'amministratore
+    * ```EMAIL_ADMIN``` è l'email dell'amministratore
 
-* ```USER_ADMIN``` è l'username dell'amministratore
+    * ```USER_ADMIN``` è l'username dell'amministratore
 
 4. Attiva l'ambiente virtuale
 
-```
-. <nome_env>/bin/activate
-```
+    ```
+    . <nome_env>/bin/activate
+    ```
 
 5. Spostati nella cartella ```wiki-django```, aggiorna pip (opzionale) e installa i pacchetti richiesti
 
-```
-cd wiki-django
-python -m pip install --upgrade pip
-pip install -r requirement.txt
-```
+    ```
+    cd wiki-django
+    python -m pip install --upgrade pip
+    pip install -r requirement.txt
+    ```
 
 6. Effettua le migrazioni
 
-```
-cd wiki
-python manage.py migrate
-```
+    ```
+    cd wiki
+    python manage.py migrate
+    ```
 
 7. Crea l'amministratore di sistema. (Vengono chiesti un username, un'email e una password. Username e email sono gli stessi settati al punto 3, qualora sia stato eseguito) 
 
-```
-python manage.py createsuperuser
-```
+    ```
+    python manage.py createsuperuser
+    ```
 
 8. Lancia il server!
 
-```
-python manage.py runserver
-```
+    ```
+    python manage.py runserver
+    ```
 
 Il pannello di amministrazione si trova all'indirizzo ```http://127.0.0.1:8000/admin```
 
