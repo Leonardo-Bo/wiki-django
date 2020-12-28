@@ -89,7 +89,7 @@ Il pannello di amministrazione si trova all'indirizzo ```http://127.0.0.1:8000/a
 
 4. Un utente con privilegi di staff può modificare ogni guida.
 
-5. Le guide vengono scritte in markdown. Sulla sidebar appare un'indice della guida formato dal titolo e dai tag \#\#.
+5. Le guide vengono scritte in markdown. Sulla sidebar appare un indice della guida formato dal titolo e dai tag \#\#.
 
 ## Prossimi obiettivi 
 
